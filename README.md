@@ -7,6 +7,8 @@ Specification For Technology
 
 Implemented Swagger UI for API Documentation.
 
+http://localhost:3000/api-docs/#/
+
 Accessment Test(Submit till Friday firsthalf)
 ---------------------------------------------
 
