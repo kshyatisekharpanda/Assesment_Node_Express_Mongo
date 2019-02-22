@@ -1,5 +1,5 @@
 # Assesment_Node_Express_Mongo
-It is a demo api for .
+It is a demo api for User related operations,CRUD operations on 'Blog' and it's comments related crud operations.
 
 Specification For Technology
 1.NodeJS + ExpressJS + ES6
