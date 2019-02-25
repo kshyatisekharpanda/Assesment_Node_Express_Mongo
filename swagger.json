@@ -40,56 +40,26 @@
         ],
         "description": "Create new user in system",
         "parameters": [{
-          "name": "Content-Type",
-          "in": "header",
-          "required": true,
-          "description": "Provide the content type",
-          "type": "string"
-        },{
-          "name": "name",
+          "name": "body",
           "in": "body",
-          "description": "User's Name",
+          "description": "User's Details",
           "required": true,
-          "type": "string",
-          "minlength":1
-        },
-        {
-          "name": "email",
-          "in": "body",
-          "description": "User's Email",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "name": "password",
-          "in": "body",
-          "description": "User's Password",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "name": "address",
-          "in": "body",
-          "description": "User's Addresss",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "name": "phone",
-          "in": "body",
-          "description": "User's Mobile Number",
-          "required": true,
-          "type": "Number"
+          "minlength": 1,
+          "example": {
+            "name": "HighIam!1csc1",
+            "email": "cs@csssssdf.cs",
+            "password": "5555",
+            "address": "India",
+            "phone": "7749896223"
+          }
         }],
         "produces": [
           "application/json"
         ],
+        "summary": "Add new user to the system",
         "responses": {
           "200": {
-            "description": "You are successfully registered",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
+            "description": "'data':'You are successfully registered'"
           }
         }
       }
@@ -101,25 +71,22 @@
         ],
         "description": "Create new log for each new login in system",
         "parameters": [{
-          "name": "email",
+          "name": "body",
           "in": "body",
           "required": true,
-          "description": "Enter the Email Address",
-          "type": "string"
-        },
-        {
-          "name": "password",
-          "in": "body",
-          "required": true,
-          "description": "Enter the Password",
-          "type": "string"
+          "description": "Enter the Email Address and Password",
+          "example": {
+            "email": "cs@csssssdf.cs",
+            "password": "5555555"
+          }
         }],
         "produces": [
           "application/json"
         ],
+        "summary": "User Login",
         "responses": {
           "200": {
-            "description": "Response is a token",
+            "description": "{'data': 'eyJhbGciOiJIUzI1NiIsInR5cckdokpXVCJ9.eyJfaWQiOiI1YzczODEyNDdmNGJiYTNmYjg2YzI3NWUiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTUxMDczNTcyfQ.Ld_cBMRvLXJkCxxRfQ-7d64ddklaysGfsl_llDBgfHw'}",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -127,7 +94,6 @@
         }
       }
     },
-
     "/user/userLogout": {
       "parameters": [{
         "name": "x-auth",
@@ -159,25 +125,20 @@
         "description": "X-auth is the access token",
         "type": "string"
       }, {
-        "name": "name",
+        "name": "body",
         "in": "body",
         "required": true,
-        "description": "Name of new blog",
-        "type": "string"
-      },
-      {
-        "name": "description",
-        "in": "body",
-        "required": true,
-        "description": "description is all about blog",
-        "type": "string"
-      }
-    ],
+        "description": "Name of new blog name and description",
+        "example": {
+          "name": "Blog's Name",
+          "description": "Blog's Description"
+        }
+      }],
       "post": {
         "tags": [
           "Blogs"
         ],
-        "summary": "Log out to the user",
+        "summary": "Add new blog",
         "responses": {
           "200": {
             "description": "Your blog has been successfully saved!",
@@ -195,21 +156,30 @@
         "required": true,
         "description": "X-auth is the access token",
         "type": "string"
-      },{
+      }, {
         "name": "id",
         "in": "path",
         "required": true,
         "description": "ID of Blog that we want to edit",
         "type": "string"
+      }, {
+        "name": "body",
+        "in": "body",
+        "required": true,
+        "description": "New edited blog name and description",
+        "example": {
+          "name": "Edited Blog Name",
+          "description": "Edited Blog Description"
+        }
       }],
       "put": {
         "tags": [
           "Blogs"
         ],
-        "summary": "Log out to the user",
+        "summary": "Edit the existing blog",
         "responses": {
           "200": {
-            "description": "Your blog has been successfully updated!",
+            "description": "'data':'Your blog has been successfully updated!'",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -224,7 +194,7 @@
         "required": true,
         "description": "X-auth is the access token",
         "type": "string"
-      },{
+      }, {
         "name": "id",
         "in": "path",
         "required": true,
@@ -238,7 +208,7 @@
         "summary": "Delete the blog by id",
         "responses": {
           "200": {
-            "description": "Your blog has been removed!",
+            "description": "'data':'Your blog has been removed!'",
             "schema": {
               "$ref": "#/definitions/Blogs"
             }
@@ -261,15 +231,7 @@
         "summary": "Get all the blogs",
         "responses": {
           "200": {
-            "description":{
-              "data": [
-                  {
-                      "_id": "5c6d622bcfce2d1d18f0319c",
-                      "name": "Blog1",
-                      "description": "EJdsdkdsjfksl",
-                      "__v": 0
-                  } ]
-          },
+            "description": "{'data':[{'id':'5c6d622bcfce2d1d18f0319c','name': 'Blog1','description': 'About Blog1','__v': 0},{'id':'5c6d622bcfce2d1d18f0319c','name': 'Blog2','description': 'About Blog2','__v': 0}]}",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -279,27 +241,23 @@
     },
     "/comment/addComment": {
       "parameters": [{
-        "name": "x-auth",
-        "in": "header",
-        "required": true,
-        "description": "X-auth is the access token",
-        "type": "string"
-      },
-      {
-        "name": "blogId",
-        "in": "body",
-        "required": true,
-        "description": "Blog Id is for the Blog reference",
-        "type": "string"
-      },
-      {
-        "name": "description",
-        "in": "body",
-        "required": true,
-        "description": "description is all about comments",
-        "type": "string"
-      }
-    ],
+          "name": "x-auth",
+          "in": "header",
+          "required": true,
+          "description": "X-auth is the access token",
+          "type": "string"
+        },
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "description": "Blog Id is for the Blog reference and comment description",
+          "example": {
+            "blogId": "5c6e5bad09f6053c485b2025",
+            "description": "New Comment"
+          }
+        }
+      ],
       "post": {
         "tags": [
           "Comments"
@@ -307,7 +265,7 @@
         "summary": "Add new comment on a specific blog",
         "responses": {
           "200": {
-            "description": "Your comment has been successfully added!",
+            "description": "{'data':'Your comment has been successfully added!'}",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -317,18 +275,28 @@
     },
     "/comment/editComment": {
       "parameters": [{
-        "name": "x-auth",
-        "in": "header",
-        "required": true,
-        "description": "X-auth is the access token",
-        "type": "string"
-      },{
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "description": "Comment Id is for editing the comment",
-        "type": "string"
-      }],
+          "name": "x-auth",
+          "in": "header",
+          "required": true,
+          "description": "X-auth is the access token",
+          "type": "string"
+        }, {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "Comment Id is for editing the comment",
+          "type": "string"
+        },
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "description": "New updated comment description",
+          "example": {
+            "description": "Edited Comment"
+          }
+        }
+      ],
       "put": {
         "tags": [
           "Comments"
@@ -336,7 +304,7 @@
         "summary": "Edit the specified comments",
         "responses": {
           "200": {
-            "description": "Your comment has been successfully updated!",
+            "description": "{'data':'Your comment has been successfully updated!'}",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -351,7 +319,7 @@
         "required": true,
         "description": "X-auth is the access token",
         "type": "string"
-      },{
+      }, {
         "name": "id",
         "in": "path",
         "required": true,
@@ -365,7 +333,7 @@
         "summary": "Remove the specified comments",
         "responses": {
           "200": {
-            "description": "You are successfully logout!",
+            "description": "{'data':'Your comment has been removed!'}",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -380,18 +348,20 @@
         "required": true,
         "description": "Comment Id is for adding the count",
         "type": "string"
-      },{
+      }, {
         "name": "x-auth",
         "in": "header",
         "required": true,
         "description": "X-auth is the access token",
         "type": "string"
-      },{
-        "name": "isLike",
+      }, {
+        "name": "body",
         "in": "body",
         "description": "Should be boolean-True/False",
         "required": true,
-        "type": "Boolean"
+        "example": {
+          "isLike": false
+        }
       }],
       "post": {
         "tags": [
@@ -400,7 +370,7 @@
         "summary": "Add like or dislike to the comments for blogs",
         "responses": {
           "200": {
-            "description": "You are successfully logout!",
+            "description": "{'data':'Your like/dislike has been updated!'}",
             "schema": {
               "$ref": "#/definitions/User"
             }
