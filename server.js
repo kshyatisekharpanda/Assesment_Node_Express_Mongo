@@ -33,7 +33,7 @@ app.use('/user', user);
 app.use('/comment', comment);
 app.use('/blog',blog);
 
-const PORT = 3000;
+const PORT = 7000;
 
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`)
