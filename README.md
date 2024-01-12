@@ -1,4 +1,4 @@
-# Assesment_Node_Express_Mongo
+# Blog Application Server
 It is a demo api for User related operations,CRUD operations on 'Blog' and it's comments related crud operations.
 
 Specification For Technology
